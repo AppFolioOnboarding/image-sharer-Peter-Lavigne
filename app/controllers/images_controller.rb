@@ -6,7 +6,12 @@ class ImagesController < ActionController::Base
   end
 
   def create
-    redirect_to Image.create(params.require(:image).permit(:url))
+    @image = Image.create(params.require(:image).permit(:url))
+    if @image.save
+      redirect_to @image
+    else
+      render 'new'
+    end
   end
 
   def show
