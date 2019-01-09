@@ -1,6 +1,4 @@
-class ImagesController < ActionController::Base
-  protect_from_forgery with: :exception
-
+class ImagesController < ApplicationController
   def new
     @image = Image.new
   end
@@ -18,5 +16,7 @@ class ImagesController < ActionController::Base
     @url = Image.find(params[:id]).url
   end
 
-  def index; end
+  def index
+    @urls = Image.order('created_at DESC').map(&:url)
+  end
 end
