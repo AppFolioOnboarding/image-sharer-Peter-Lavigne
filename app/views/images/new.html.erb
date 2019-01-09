@@ -1,0 +1,15 @@
+<h1>Store an image</h1>
+<%= form_for(@image, url: images_path) do |f| %>
+  <% if @image.errors.any? %>
+    <ul>
+      <% @image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+
+  <%= f.submit "Save image URL" %>
+<% end %>
