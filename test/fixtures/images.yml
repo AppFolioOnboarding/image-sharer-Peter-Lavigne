@@ -1,7 +1,4 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  url: MyString
-
-two:
-  url: MyString
+appfolio:
+  url: 'https://learn.appfolio.com/apm/www/images/apm-logo-v2.png'
