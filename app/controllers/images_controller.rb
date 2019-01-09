@@ -17,4 +17,6 @@ class ImagesController < ActionController::Base
   def show
     @url = Image.find(params[:id]).url
   end
+
+  def index; end
 end
