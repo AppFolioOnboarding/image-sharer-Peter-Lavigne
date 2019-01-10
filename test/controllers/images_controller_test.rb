@@ -31,6 +31,14 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should be an image on the landing page' do
     get root_path
-    assert_select 'img', count: 1
+    assert_select 'img', count: 2
+  end
+
+  test 'index should display in reverse order' do
+    get root_path
+    assert_select 'img' do |images|
+      assert_equal 'https://picsum.photos/300/200/?image=2', images[0].attribute('src').value
+      assert_equal 'https://picsum.photos/300/200/?image=1', images[1].attribute('src').value
+    end
   end
 end
