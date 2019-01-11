@@ -8,11 +8,11 @@ class ImageTest < ActiveSupport::TestCase
 
   test 'url validation should check for presence' do
     image = Image.new(url: '')
-    refute_predicate(image, :valid?)
+    assert_not_predicate(image, :valid?)
   end
 
   test 'url validation should check for valid formatting' do
     image = Image.new(url: 'googlecom/image')
-    refute_predicate(image, :valid?)
+    assert_not_predicate(image, :valid?)
   end
 end
