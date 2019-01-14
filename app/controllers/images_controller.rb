@@ -13,7 +13,7 @@ class ImagesController < ApplicationController
   end
 
   def show
-    @url = Image.find(params[:id]).url
+    @image = Image.find(params[:id])
   end
 
   def index

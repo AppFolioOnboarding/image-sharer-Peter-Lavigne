@@ -50,4 +50,15 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
       } }
     end
   end
+
+  test 'show displays tags' do
+    @image_with_tags = Image.create(
+      url: 'https://learn.appfolio.com/apm/www/images/apm-logo-v2.png',
+      tag_list: 'sun, fun, run'
+    )
+    get image_path(@image_with_tags)
+    assert_select 'li', 'sun'
+    assert_select 'li', 'fun'
+    assert_select 'li', 'run'
+  end
 end
