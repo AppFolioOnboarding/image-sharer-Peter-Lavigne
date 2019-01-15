@@ -1,0 +1,20 @@
+computer1:
+  tag: computer
+  taggable: computer1 (Image)
+  context: 'tags'
+computer2:
+  tag: computer
+  taggable: computer2 (Image)
+  context: 'tags'
+rustic1:
+  tag: rustic
+  taggable: rustic1 (Image)
+  context: 'tags'
+rustic2:
+  tag: rustic
+  taggable: rustic2 (Image)
+  context: 'tags'
+building:
+  tag: building
+  taggable: rustic2 (Image)
+  context: 'tags'
