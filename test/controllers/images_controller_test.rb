@@ -75,4 +75,9 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     get images_path, params: { tag: 'sky' }
     assert_select 'div.alert', 'No images tagged with sky'
   end
+
+  test 'show page provides links to searching by tag' do
+    get image_path(images(:rustic2))
+    assert_select 'a', count: 2
+  end
 end
