@@ -32,14 +32,14 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should be an image on the landing page' do
     get root_path
-    assert_select 'img', count: 2
+    assert_select 'img', count: 4
   end
 
   test 'index should display in reverse order' do
     get root_path
     assert_select 'img' do |images|
-      assert_equal 'https://picsum.photos/300/200/?image=2', images[0].attribute('src').value
-      assert_equal 'https://picsum.photos/300/200/?image=1', images[1].attribute('src').value
+      assert_equal 'https://picsum.photos/300/200/?image=101', images.first.attribute('src').value
+      assert_equal 'https://picsum.photos/300/200/?image=1', images.last.attribute('src').value
     end
   end
 
@@ -60,5 +60,24 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'li', 'sun'
     assert_select 'li', 'fun'
     assert_select 'li', 'run'
+  end
+
+  test 'index allows searching by tag' do
+    get images_path, params: { tag: 'rustic' }
+    assert_select 'img' do |images|
+      assert_equal 2, images.size
+      assert_equal 'https://picsum.photos/300/200/?image=101', images[0].attribute('src').value
+      assert_equal 'https://picsum.photos/300/200/?image=99', images[1].attribute('src').value
+    end
+  end
+
+  test 'index page shows alert if no images have a specified tag' do
+    get images_path, params: { tag: 'sky' }
+    assert_select 'div.alert', 'No images tagged with sky'
+  end
+
+  test 'show page provides links to searching by tag' do
+    get image_path(images(:rustic2))
+    assert_select 'a', count: 2
   end
 end
