@@ -15,4 +15,12 @@ class ImageTest < ActiveSupport::TestCase
     image = Image.new(url: 'googlecom/image')
     assert_not_predicate(image, :valid?)
   end
+
+  test 'image with multiple tags can be created' do
+    image = Image.create(
+      url: 'https://picsum.photos/300/200/?image=3',
+      tag_list: 'sun, fun, run'
+    )
+    assert_equal image.tag_list, %w[sun fun run]
+  end
 end

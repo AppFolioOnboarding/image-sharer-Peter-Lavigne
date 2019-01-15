@@ -11,5 +11,8 @@
   <%= f.label :url %>
   <%= f.text_field :url %>
 
+  <%= f.label :tag_list %>
+  <%= f.text_field :tag_list, value: f.object.tag_list.to_s %>
+
   <%= f.submit "Save image URL" %>
 <% end %>
