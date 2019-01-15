@@ -17,6 +17,8 @@ class ImagesController < ApplicationController
   end
 
   def index
-    @urls = Image.order('created_at DESC').map(&:url)
+    @images = Image.order('created_at DESC')
+    @images = @images.tagged_with(params['tag']) if params.key?('tag')
+    flash.now[:alert] = "No images tagged with #{params['tag']}" if params.key?('tag') && @images.empty?
   end
 end
