@@ -81,4 +81,24 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '.tag', count: 2
     assert_select 'a', count: 4
   end
+
+  test 'successfully delete an image' do
+    image = Image.create!(url: 'https://learn.appfolio.com/apm/www/images/apm-logo-v2.png')
+    assert_difference 'Image.count', -1 do
+      delete image_path(image.id)
+    end
+    assert_redirected_to images_path
+    assert_not Image.exists?(image.id)
+    follow_redirect!
+    assert_select '.alert-success', 'You have successfully deleted the image.'
+  end
+
+  test 'deleting an image that does not exist succeeds' do
+    assert_no_difference 'Image.count' do
+      delete image_path(-1)
+    end
+    assert_redirected_to images_path
+    follow_redirect!
+    assert_select '.alert-success', 'You have successfully deleted the image.'
+  end
 end

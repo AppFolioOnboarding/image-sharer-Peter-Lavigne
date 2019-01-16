@@ -22,4 +22,11 @@ class ImagesController < ApplicationController
     @images = @images.tagged_with(params['tag']) if params.key?('tag')
     flash.now[:alert] = "No images tagged with #{params['tag']}" if params.key?('tag') && @images.empty?
   end
+
+  def destroy
+    image = Image.find_by(id: params[:id])
+    image&.destroy
+    flash[:success] = 'You have successfully deleted the image.'
+    redirect_to images_path
+  end
 end
