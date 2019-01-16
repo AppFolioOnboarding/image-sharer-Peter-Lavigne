@@ -78,6 +78,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
   test 'show page provides links to searching by tag' do
     get image_path(images(:rustic2))
-    assert_select 'a', count: 2
+    assert_select '.tag', count: 2
+    assert_select 'a', count: 4
   end
 end
