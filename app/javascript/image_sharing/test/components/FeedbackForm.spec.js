@@ -53,4 +53,15 @@ describe('<FooterFeedback />', () => {
     expect(nameSpy.calledWith(name)).to.be.true;
     expect(feedbackSpy.calledWith(feedback)).to.be.true;
   });
+
+  it('should display alert message', () => {
+    const store = new FeedbackStore();
+    const alert = "An error occurred";
+    store.setAlertMessage(alert);
+    const wrapper = mount(
+      <FeedbackForm stores={{feedbackStore: store}}/>
+    );
+
+    expect(wrapper.find('.alert-message').text()).to.equal(alert);
+  });
 });

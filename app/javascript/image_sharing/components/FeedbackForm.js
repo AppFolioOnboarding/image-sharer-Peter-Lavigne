@@ -20,7 +20,8 @@ class FeedbackForm extends Component {
 
   render() {
     return (
-      <form className="m-5">
+      <div className="m-5">
+        <p className="alert-message">{this.props.stores.feedbackStore.alertMessage}</p>
         <div className="form-group">
           <label>Name:</label>
           <input type="text" name="name" className="form-control" value={this.props.stores.feedbackStore.name} onChange={this.handleNameChange}/>
@@ -30,7 +31,7 @@ class FeedbackForm extends Component {
           <input type="text" name="feedback" className="form-control" value={this.props.stores.feedbackStore.feedback} onChange={this.handleFeedbackChange}/>
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
+      </div>
     )
   }
 }
