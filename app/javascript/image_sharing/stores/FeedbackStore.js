@@ -3,6 +3,7 @@ import { action, observable } from 'mobx';
 export class FeedbackStore {
   @observable name = "";
   @observable feedback = "";
+  @observable alertMessage = "";
 
   @action
   setName = (name) => {
@@ -12,6 +13,11 @@ export class FeedbackStore {
   @action
   setFeedback = (feedback) => {
     this.feedback = feedback;
+  };
+
+  @action
+  setAlertMessage = (alertMessage) => {
+    this.alertMessage = alertMessage;
   };
 }
 

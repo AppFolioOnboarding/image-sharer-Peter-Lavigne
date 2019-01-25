@@ -13,7 +13,8 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-gears": "^4.13.1",
-    "reactstrap": "^6.1.0"
+    "reactstrap": "^6.1.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "assert": "^1.4.1",
